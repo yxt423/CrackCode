@@ -8,6 +8,15 @@ package SolutionManul;
 public class findBiggestProfit {
 	
 	public static int findProfit(int[] days){
-		
+		int minPrice = days[0];
+		int maxProfit = 0;
+		for(int i=1; i<days.length;i++){
+			if(minPrice > days[i])
+				minPrice = days[i];
+			int currentProfit = days[i] - minPrice;
+			if(currentProfit > maxProfit)
+				maxProfit = currentProfit;
+		}
+		return maxProfit;
 	}
 }
