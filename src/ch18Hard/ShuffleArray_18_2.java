@@ -2,7 +2,7 @@ package ch18Hard;
 
 import java.util.Arrays;
 
-public class ShuffleArray_18_1 {
+public class ShuffleArray_18_2 {
 	
 	public static int[] shuffle(int[] input){
 		for(int i=0; i<input.length; i++){
