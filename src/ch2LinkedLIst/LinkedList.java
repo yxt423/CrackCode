@@ -29,6 +29,43 @@ public class LinkedList {
 		}
 	}
 	
+	public Node find(int key){
+		Node current = head;
+		
+		while(current != null){
+			if(current.value == key){
+				return current;
+			}
+			else{
+				current = current.next;
+			}
+		}
+		return null;
+	}
+	
+	public Node delete(int key){
+		Node current = head;
+		Node previous = head;
+		
+		while(current != null){
+			if(current.value == key){
+				Node temp = current;
+				if(current == head){
+					head = head.next;
+				}
+				else{
+					previous.next = current.next;
+				}
+				return temp;
+			}
+			else{
+				previous = current;
+				current = current.next;
+			}
+		}
+		return null;
+	}
+	
 	public void displayList(){
 		Node p = head;
 		while(p != null){
