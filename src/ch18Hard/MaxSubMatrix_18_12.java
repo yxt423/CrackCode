@@ -4,7 +4,7 @@ public class MaxSubMatrix_18_12 {
 	
 	public static int maxSubMatrix(int[][] M){
 		int rowCount = M.length;
-		int colCount = M.length;
+		int colCount = M[0].length;
 		
 		int[] partialSum = new int[colCount];
 		int maxSum = 0;
