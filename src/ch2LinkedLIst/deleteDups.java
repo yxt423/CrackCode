@@ -2,7 +2,7 @@ package ch2LinkedLIst;
 
 import java.util.Hashtable;
 
-public class deleteDups {
+public class deleteDups  {
 	
 	public static void deleteDupNodes(Node n){
 		Node previous = null;
@@ -20,7 +20,19 @@ public class deleteDups {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		LinkedList list = new LinkedList();
+		list.insertFirst(1);
+		list.insertFirst(2);
+		list.insertFirst(2);
+		list.insertFirst(3);
+		list.insertFirst(4);
+		list.insertFirst(4);
+		list.insertFirst(4);
+		list.insertFirst(5);
+		
+		list.displayList();
+		deleteDupNodes(list.getHead());
+		list.displayList();
 	}
 
 }
