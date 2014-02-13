@@ -12,15 +12,6 @@ Given m, n satisfy the following condition:
  * */
 package leetCode;
 
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) {
-       val = x;
-        next = null;
-    }
-}
-
 public class ReverseLinkedListII {
     public ListNode reverseBetween(ListNode head, int m, int n) {
         if (m == n) {
