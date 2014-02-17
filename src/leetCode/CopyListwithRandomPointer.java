@@ -1,41 +1,42 @@
 package leetCode;
-
 public class CopyListwithRandomPointer {
+    private void copyNext(RandomListNode head) {
+        while (head != null) {
+            RandomListNode copyNode = new RandomListNode(head.label);
+            copyNode.next = head.next;
+            head.next = copyNode;
+            head = copyNode.next;
+        }
+    }
+    
+    private void copyRandom(RandomListNode head) {
+        while (head != null) {
+            if (head.random != null) {
+                head.next.random = head.random.next;
+            }
+            head = head.next.next;
+        }
+    }
+    
+    private RandomListNode splitList(RandomListNode head) {
+        RandomListNode head2 = head.next;
+        while (head != null) {
+            RandomListNode temp = head.next;
+            head.next = temp.next;
+            head = head.next;
+            if (temp.next != null) {
+                temp.next = temp.next.next;
+            }
+        }
+        return head2;
+    }
+    
     public RandomListNode copyRandomList(RandomListNode head) {
         if (head == null) {
             return null;
         }
-        
-        RandomListNode cur = head;
-        while (cur != null) {
-            RandomListNode copyNode = new RandomListNode(cur.label);
-            copyNode.next = cur.next;
-            cur.next = copyNode;
-            cur = copyNode.next;
-        }
-        
-        cur = head;
-        while (cur != null) {
-            if (cur.random != null) {
-                cur.next.random = cur.random.next;
-            } else {
-                cur.next.random = null;
-            }
-            cur = cur.next.next;
-        }
-        
-        RandomListNode head2 = head.next;
-        cur = head;
-        while (cur != null && cur.next != null) {
-            RandomListNode next = cur.next;
-            if (cur.next.next != null) {
-                cur.next = cur.next.next;
-            } else {
-                cur.next = null;
-            }
-            cur = next;
-        }
-        
-        return head2;
+        copyNext(head);
+        copyRandom(head);
+        return splitList(head);
     }
 }
