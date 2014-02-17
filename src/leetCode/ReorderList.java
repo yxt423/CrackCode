@@ -6,20 +6,25 @@ public class ReorderList {
             return head;
         }
         
+        ListNode mid = findMiddle(head);
+        ListNode head2 = mid.next;
+        mid.next = null;
+        head2 = reverse(head2);
+        head = merge(head, head2);
+        return head;
+    }
+    
+    private ListNode findMiddle(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
         while (fast.next != null && fast.next.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
-        ListNode head2 = slow.next;
-        slow.next = null;
-        head2 = reverse(head2);
-        head = merge(head, head2);
-        return head;
+        return slow;
     }
     
-    public static ListNode reverse(ListNode head) {
+    private ListNode reverse(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
@@ -39,7 +44,7 @@ public class ReorderList {
         return prev;
     }
     
-    public static ListNode merge(ListNode l1, ListNode l2) {
+    private ListNode merge(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return null;
         }
