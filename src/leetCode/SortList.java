@@ -5,20 +5,24 @@ public class SortList {
         if (head == null || head.next == null) {
             return head;
         }
-        
+        ListNode mid = findMiddle(head);
+        ListNode l1 = sortList(mid.next);
+        mid.next = null;
+        ListNode l2 = sortList(head);
+        return merge(l1, l2);
+    }
+    
+    private ListNode findMiddle(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
         while (fast.next != null && fast.next.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
-        ListNode l1 = sortList(slow.next);
-        slow.next = null;
-        ListNode l2 = sortList(head);
-        return merge(l1, l2);
+        return slow;
     }
     
-    public static ListNode merge(ListNode l1, ListNode l2) {
+    private ListNode merge(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
         ListNode cur = dummy;
         while (l1 != null && l2 != null) {
