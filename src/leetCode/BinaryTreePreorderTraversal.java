@@ -20,10 +20,3 @@ public class BinaryTreePreorderTraversal {
         traverse(root.right, result);
     }
 }
-
- class TreeNode {
-     int val;
-     TreeNode left;
-     TreeNode right;
-     TreeNode(int x) { val = x; }
-}
