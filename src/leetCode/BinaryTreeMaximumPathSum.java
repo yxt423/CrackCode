@@ -14,9 +14,11 @@ public class BinaryTreeMaximumPathSum {
             return new ResultType(0, Integer.MIN_VALUE);
         }
         
+        //Divide
         ResultType left = helper(root.left);
         ResultType right = helper(root.right);
         
+        //Conquer
         int singlePath = Math.max(left.singlePath, right.singlePath) + root.val;
         singlePath = Math.max(singlePath, 0);
         
