@@ -1,20 +1,20 @@
 package leetCode;
 
-public class RemoveDuplicatesfromSortedArray {
+public class RemoveDuplicatesfromSortedArray_II {
     public static int removeDuplicates(int[] A) {
         if (A == null || A.length == 0) {
             return 0;
-        } else if (A.length == 1) {
-            return 1;
+        } else if (A.length < 3) {
+            return A.length;
         }
         
-        int left = 0;
-        for (int i = 1; i < A.length; i++) {
-            if (A[left] != A[i]) {
-                A[++left] = A[i];
+        int cur = 1;
+        for (int i = 2; i < A.length; i++) {
+            if (!(A[cur] == A[i] && A[cur - 1] == A[i])) {
+                A[++cur] = A[i];
             }
         }
-        return left + 1;
+        return cur + 1;
     }
 
     public static void main(String argv[]) {
