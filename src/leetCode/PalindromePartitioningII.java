@@ -1,40 +1,36 @@
 package leetCode;
 
+import java.util.Arrays;
+
 public class PalindromePartitioningII {
-    private static int minCuts = 0;
-    
+
     public static int minCut(String s) {
-        helper(s, 0);
-        return minCuts;
-    }
-    
-    private static void helper(String s, int pos) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
         
-        for (int i = s.length(); i > pos; i--) {
-            String str = s.substring(pos, i);
-            if (isPalindrome(str)) {
-                if (i == s.length()) {
-                    return;
-                } else {
-                    minCuts++;
-                    helper(s, i);
+        int[] cuts = new int[s.length()];
+        boolean[][] palindrome = new boolean[s.length()][s.length()];
+        Arrays.fill(cuts, Integer.MAX_VALUE);
+        cuts[0] = 0;
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i; j > 0; j--) {
+                if (s.charAt(i) == s.charAt(j) && (j >= i - 1 || j <= i - 2 &&  palindrome[j + 1][i - 1])) {
+                    palindrome[j][i] = true;
+                    if (j == 0) {
+                        cuts[i] = 0;
+                    } else {
+                        cuts[i] = Math.min(cuts[i], cuts[j - 1] + 1);
+                    }
                 }
             }
         }
-    }
-    
-    private static boolean isPalindrome(String str) {
-        int len = str.length();
-        for (int i = 0; i < len / 2; i++) {
-            if (str.charAt(i) != str.charAt(len - i - 1)) {
-                return false;
-            }
-        }
-        return true;
+        
+        return cuts[s.length() - 1];
     }
     
     public static void main(String[] argv) {
-    	String str = "fifgbeajcacehiicccfecbfhhgfiiecdcjjffbghdidbhbdbfbfjccgbbdcjheccfbhafehieabbdfeigbiaggchaeghaijfbjhi";
+    	String str = "ab";
     	System.out.println(Integer.toString(minCut(str)));
     }
 }

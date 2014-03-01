@@ -2,29 +2,17 @@ package leetCode;
 
 public class ClimbingStairs {
     public int climbStairs(int n) {
-        if (n <= 0) {
-            return 0;
+        if (n <= 2) {
+            return n;
         }
         
-        if (n == 1) {
-            return 1;
-        }
-        
-        if (n == 2) {
-            return 2;
-        }
-        
-        int prevv = 1;
-        int prev = 2;
-        int cur;
+        int last = 2, lastlast = 1;
+        int cur = 0;
         for (int i = 3; i <= n; i++) {
-            cur = prev + prevv;
-            if (i == n) {
-                return cur;
-            }
-            prevv = prev;
-            prev = cur;
+            cur = lastlast + last;
+            lastlast = last;
+            last = cur;
         }
-        return 0;
+        return cur;
     }
 }
