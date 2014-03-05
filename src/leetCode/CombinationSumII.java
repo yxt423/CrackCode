@@ -22,16 +22,16 @@ public class CombinationSumII {
                         ArrayList<Integer> list, int[] num, int target, int sum, int pos) {
         
         if (sum == target) {
-            ArrayList newList = new ArrayList<Integer>(list);
-            if (!result.contains(newList)) {
-                result.add(newList);
-            }
+            ArrayList<Integer> newList = new ArrayList<Integer>(list);
+            result.add(newList);
+            return;
+        } else if (sum > target) {
             return;
         }
         
         for (int i = pos; i < num.length; i++) {
-            if (sum + num[i] > target) {
-                break;
+            if (i != pos && num[i] == num[i - 1]) {
+                continue;
             }
             list.add(num[i]);
             helper(result, list, num, target, sum + num[i], i + 1);
